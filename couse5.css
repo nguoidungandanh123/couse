@@ -1,0 +1,90 @@
+/* Đặt cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Container */
+.container {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* Mặc định cho mọi kích thước */
+.grid-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Cho hình tròn ở chế độ mặc định */
+}
+
+/* Lưới một cột cho thiết bị di động */
+@media (max-width: 771px) {
+    .container {
+        grid-template-columns: 1fr; /* Lưới một cột */
+    }
+}
+
+/* Lưới hai cột cho chế độ máy tính bảng (772px) */
+@media (min-width: 772px) and (max-width: 991px) {
+    .container {
+        grid-template-columns: 1fr 1fr; /* Lưới hai cột */
+    }
+
+    .grid-item.large {
+        grid-column: span 2; /* Hình cuối chiếm cả hai cột */
+    }
+
+    .grid-item img {
+        border-radius: 50%; /* Hình tròn */
+    }
+}
+
+/* Lưới ba cột cho màn hình lớn (992px trở lên) */
+@media (min-width: 992px) {
+    .container {
+        grid-template-columns: 1fr 1fr 1fr; /* Lưới ba cột */
+    }
+
+    .grid-item:nth-child(3n) {
+        grid-column: span 2; /* Mỗi con số thứ ba chiếm cả hai cột */
+    }
+
+    .grid-item img {
+        border-radius: 0; /* Hình không có bán kính */
+    }
+}
+
+/* Chuyển động giảm */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto; /* Xóa hành vi cuộn */
+    }
+}
+
+/* Màu tối cho chế độ tối */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333;
+        color: #f1f1f1;
+    }
+
+    .grid-item img {
+        background-color: #555; /* Thay đổi màu nền của các hình */
+    }
+
+    .grid-item p {
+        color: #f9e56a; /* Màu vàng nhạt */
+    }
+
+    .grid-item img {
+        border: 2px solid #000; /* Màu viền hình tối */
+    }
+}
